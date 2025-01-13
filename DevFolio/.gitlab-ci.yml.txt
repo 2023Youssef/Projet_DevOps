@@ -1,0 +1,25 @@
+stages:
+  - build
+  - deploy
+
+# Étape de build (optionnel si vous avez une phase de compilation)
+build:
+  stage: build
+  script:
+    - echo "Building the project..."
+  artifacts:
+    paths:
+      - . # Inclure tout le projet comme artefact
+
+# Étape de déploiement
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the project..."
+    - mkdir -p public
+    - cp -r * public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main # Exécuter seulement sur la branche principale
